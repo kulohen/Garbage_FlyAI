@@ -3,21 +3,17 @@
 Created on Mon Oct 30 19:44:02 2017
 
 @author: wangyi
-
-update3 尝试新增一些东西
-validata_data 取代 split
 """
 
 import argparse
 
-from keras.applications import ResNet50,VGG16
+from keras.applications import ResNet50
 from flyai.dataset import Dataset
-from keras.layers import Conv2D, MaxPool2D, Dropout, Flatten, Dense, Activation, MaxPooling2D,ZeroPadding2D
+from keras.layers import Conv2D, MaxPool2D, Dropout, Flatten, Dense, Activation, MaxPooling2D
 from keras.models import Sequential
 from model import Model
 from path import MODEL_PATH
 from keras.callbacks import EarlyStopping, TensorBoard,ModelCheckpoint
-from keras.optimizers import SGD
 
 '''
 update2
@@ -44,34 +40,7 @@ print('dataset.get_all_validation_data():',dataset.get_validation_length())
 实现自己的网络机构
 '''
 num_classes = 6
-sqeue = Sequential()
-sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same',input_shape=(224, 224, 3)))
-sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
-sqeue.add(MaxPooling2D(pool_size=(2, 2)))
-# sqeue.add(Dropout(0.25))
-
-sqeue.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
-sqeue.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
-sqeue.add(MaxPooling2D(pool_size=(2, 2)))
-# sqeue.add(Dropout(0.25))
-
-sqeue.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
-sqeue.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
-sqeue.add(MaxPooling2D(pool_size=(2, 2)))
-# sqeue.add(Dropout(0.25))
-
-sqeue.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
-sqeue.add(MaxPooling2D(pool_size=(2, 2)))
-
-sqeue.add(Flatten())
-sqeue.add(Dense(1024, activation='relu'))
-sqeue.add(Dropout(0.5))
-sqeue.add(Dense(1024, activation='relu'))
-sqeue.add(Dropout(0.5))
-sqeue.add(Dense(num_classes, activation='softmax'))
-
-sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
-
+sqeue = ResNet50( weights=None, input_shape=(224, 224, 3), classes= num_classes, include_top=True)
 
 # 输出模型的整体信息
 sqeue.summary()
@@ -90,12 +59,12 @@ y_train=dataset.processor_y(y_train)
 x_val=dataset.processor_x(x_val)
 y_val=dataset.processor_y(y_val)
 # checkpoint = ModelCheckpoint( monitor='val_acc', mode='auto', save_best_only=True)
-early_stopping = EarlyStopping(monitor='val_loss', patience=10 ,verbose=1)
+early_stopping = EarlyStopping(monitor='val_loss', patience=10)
 best_score = 0
 # for step in range(dataset.get_step()):
 history = sqeue.fit(x=x_train, y=y_train,
-                    validation_data=(x_val , y_val),
-                    # validation_split=0.2,
+                    # validation_data=(x_val , y_val),
+                    validation_split=0.2,
                     shuffle=True,
                     batch_size=args.BATCH,
                     # callbacks = [early_stopping],
