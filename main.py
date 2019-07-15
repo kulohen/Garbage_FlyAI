@@ -4,8 +4,9 @@ Created on Mon Oct 30 19:44:02 2017
 
 @author: wangyi
 
-update3 尝试新增一些东西
+update4 尝试新增一些东西
 validata_data 取代 split
+512 × 384 ，输入图片再改改
 """
 
 import argparse
@@ -29,7 +30,7 @@ update2
 '''
 parser = argparse.ArgumentParser()
 parser.add_argument("-e", "--EPOCHS", default=100, type=int, help="train epochs")
-parser.add_argument("-b", "--BATCH", default=32, type=int, help="batch size")
+parser.add_argument("-b", "--BATCH", default=16, type=int, help="batch size")
 args = parser.parse_args()
 
 '''
@@ -38,6 +39,15 @@ flyai库中的提供的数据处理方法
 '''
 dataset = Dataset(epochs=args.EPOCHS, batch=args.BATCH)
 model = Model(dataset)
+'''
+dataset获取train & test数据的总迭代次数
+
+'''
+x_train, y_train , x_val, y_val =dataset.get_all_data()
+x_train=dataset.processor_x(x_train)
+y_train=dataset.processor_y(y_train)
+x_val=dataset.processor_x(x_val)
+y_val=dataset.processor_y(y_val)
 print('dataset.get_train_length() :',dataset.get_train_length())
 print('dataset.get_all_validation_data():',dataset.get_validation_length())
 '''
@@ -45,7 +55,7 @@ print('dataset.get_all_validation_data():',dataset.get_validation_length())
 '''
 num_classes = 6
 sqeue = Sequential()
-sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same',input_shape=(224, 224, 3)))
+sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same',input_shape=(384, 512, 3)))
 sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
 sqeue.add(MaxPooling2D(pool_size=(2, 2)))
 # sqeue.add(Dropout(0.25))
@@ -80,17 +90,9 @@ sqeue.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
 
-'''
-dataset.get_step() 获取数据的总迭代次数
 
-'''
-x_train, y_train , x_val, y_val =dataset.get_all_data()
-x_train=dataset.processor_x(x_train)
-y_train=dataset.processor_y(y_train)
-x_val=dataset.processor_x(x_val)
-y_val=dataset.processor_y(y_val)
 # checkpoint = ModelCheckpoint( monitor='val_acc', mode='auto', save_best_only=True)
-early_stopping = EarlyStopping(monitor='val_loss', patience=10 ,verbose=1)
+early_stopping = EarlyStopping(monitor='loss', patience=10 ,verbose=1)
 best_score = 0
 # for step in range(dataset.get_step()):
 history = sqeue.fit(x=x_train, y=y_train,
