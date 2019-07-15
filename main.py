@@ -12,6 +12,10 @@ update5
 validate merge
 batchnormalize
 earlystopping by loss
+
+update6
+ImageDataGenerator
+
 """
 
 import argparse
@@ -25,6 +29,7 @@ from path import MODEL_PATH
 from keras.callbacks import EarlyStopping, TensorBoard,ModelCheckpoint
 from keras.optimizers import SGD,adam
 import numpy as np
+from keras.preprocessing.image import ImageDataGenerator
 
 '''
 项目的超参
@@ -95,12 +100,28 @@ sqeue.compile(loss='categorical_crossentropy',
 
 
 # checkpoint = ModelCheckpoint( monitor='val_acc', mode='auto', save_best_only=True)
-early_stopping = EarlyStopping(monitor='loss', patience=10 ,verbose=1)
+early_stopping = EarlyStopping(monitor='loss', patience=50 ,verbose=1)
 best_score = 0
 
 x_train_and_x_val = np.concatenate((x_train, x_val),axis=0)
 y_train_and_y_val= np.concatenate((y_train , y_val),axis=0)
-print('x_train_and_x_val.size :', x_train_and_x_val.shape)
+
+# 采用数据增强ImageDataGenerator
+datagen= ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=5,
+    width_shift_range=0.02,
+    height_shift_range=0.02,
+    shear_range=0.02,
+    horizontal_flip=True,
+    vertical_flip=True
+
+)
+# datagen.fit(x_train_and_x_val)
+data_iter = datagen.flow(x_train_and_x_val, y_train_and_y_val, batch_size=args.BATCH)
+
+print('x_train_and_x_val.shape :', x_train_and_x_val.shape)
+'''
 history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
                     validation_data=(x_val , y_val),
                     # validation_split=0.2,
@@ -109,6 +130,17 @@ history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
                     callbacks = [early_stopping],
                     epochs =args.EPOCHS,
                     verbose=2)
+'''
+history =sqeue.fit_generator(
+    data_iter,
+    steps_per_epoch=100,
+    validation_data=(x_val , y_val),
+    # validation_steps=5,
+    callbacks = [early_stopping],
+    epochs =args.EPOCHS,
+    verbose=1
+)
+
 
 #    print("dataset step : "+ str(step + 1) + "/" + str(dataset.get_step()))
 model.save_model(sqeue, MODEL_PATH, overwrite=True)

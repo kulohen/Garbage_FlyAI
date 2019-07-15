@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0926a165-d7d4-4ba4-ae7c-f43efceb9bff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Garbage_FlyAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Garbage_FlyAI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/processor.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +16,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="113">
+              <caret line="102" column="58" selection-start-line="102" selection-start-column="58" selection-end-line="102" selection-end-column="58" />
               <folding>
-                <element signature="e#146#161#0" expanded="true" />
+                <element signature="e#207#222#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.flyai/env/lib/python3.6/site-packages/keras/engine/training.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="655">
+              <caret line="1353" column="78" lean-forward="true" selection-start-line="1345" selection-start-column="12" selection-end-line="1353" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.flyai/env/lib/python3.6/site-packages/keras/preprocessing/image.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="593">
+              <caret line="430" column="30" lean-forward="true" selection-start-line="430" selection-start-column="17" selection-end-line="430" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -75,6 +89,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="9e1f6b8c-ffa8-4efc-ad6e-148b42468cdb" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -146,7 +163,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -303,7 +320,7 @@
       <workItem from="1563118882379" duration="710000" />
       <workItem from="1563119683857" duration="4030000" />
       <workItem from="1563151554359" duration="10541000" />
-      <workItem from="1563201001216" duration="1717000" />
+      <workItem from="1563201001216" duration="6955000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1563039006977</created>
@@ -347,11 +364,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563115414374</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update5&#10;validate merge&#10;batchnormalize&#10;earlystopping by loss">
+      <created>1563202801384</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1563202801384</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44990000" />
+    <option name="totallyTimeSpent" value="50228000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -366,12 +390,12 @@
     <frame x="83" y="32" width="2477" height="1408" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5724466" visible="true" weight="0.29120198" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5724466" visible="true" weight="0.29120198" />
       <window_info id="Structure" order="1" sideWeight="0.42755345" side_tool="true" visible="true" weight="0.29120198" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49896738" weight="0.32854864" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49855432" visible="true" weight="0.32854864" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39952153" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -379,8 +403,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49979347" weight="0.3293461" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50103265" side_tool="true" weight="0.32854864" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49896738" visible="true" weight="0.32854864" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5014457" side_tool="true" weight="0.32854864" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49896738" weight="0.32854864" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32988048" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -397,10 +421,11 @@
     <MESSAGE value="v2 ResNet50 原生" />
     <MESSAGE value="v2 ResNet50 原生 update2" />
     <MESSAGE value="v2 ResNet50 原生 update3" />
-    <option name="LAST_COMMIT_MESSAGE" value="v2 ResNet50 原生 update3" />
+    <MESSAGE value="update5&#10;validate merge&#10;batchnormalize&#10;earlystopping by loss" />
+    <option name="LAST_COMMIT_MESSAGE" value="update5&#10;validate merge&#10;batchnormalize&#10;earlystopping by loss" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Garbage_FlyAI$main.coverage" NAME="main Coverage Results" MODIFIED="1563202513107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Garbage_FlyAI$main.coverage" NAME="main Coverage Results" MODIFIED="1563214414694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Garbage_FlyAI$processor.coverage" NAME="processor Coverage Results" MODIFIED="1563084951885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Garbage_FlyAI$EarlyStoppingByLossVal.coverage" NAME="EarlyStoppingByLossVal Coverage Results" MODIFIED="1563155977244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -412,7 +437,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$USER_HOME$/.flyai/env/lib/python3.6/site-packages/keras/engine/training_utils.py" />
-    <entry file="file://$USER_HOME$/.flyai/env/lib/python3.6/site-packages/keras/engine/training.py" />
     <entry file="file://$PROJECT_DIR$/main-2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -488,12 +512,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.flyai/env/lib/python3.6/site-packages/keras/preprocessing/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="430" column="30" lean-forward="true" selection-start-line="430" selection-start-column="17" selection-end-line="430" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.flyai/env/lib/python3.6/site-packages/keras/engine/training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="1353" column="78" lean-forward="true" selection-start-line="1345" selection-start-column="12" selection-end-line="1353" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="113">
+          <caret line="102" column="58" selection-start-line="102" selection-start-column="58" selection-end-line="102" selection-end-column="58" />
           <folding>
-            <element signature="e#146#161#0" expanded="true" />
+            <element signature="e#207#222#0" expanded="true" />
           </folding>
         </state>
       </provider>
