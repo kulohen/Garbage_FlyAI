@@ -36,7 +36,7 @@ from keras.preprocessing.image import ImageDataGenerator
 '''
 parser = argparse.ArgumentParser()
 parser.add_argument("-e", "--EPOCHS", default=100, type=int, help="train epochs")
-parser.add_argument("-b", "--BATCH", default=32, type=int, help="batch size")
+parser.add_argument("-b", "--BATCH", default=64, type=int, help="batch size")
 args = parser.parse_args()
 
 '''
@@ -85,7 +85,6 @@ sqeue.add(BatchNormalization())
 sqeue.add(Dropout(0.5))
 sqeue.add(Dense(1024, activation='relu'))
 sqeue.add(BatchNormalization())
-sqeue.add(Dropout(0.5))
 sqeue.add(Dense(num_classes, activation='softmax'))
 
 sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
@@ -100,7 +99,7 @@ sqeue.compile(loss='categorical_crossentropy',
 
 
 # checkpoint = ModelCheckpoint( monitor='val_acc', mode='auto', save_best_only=True)
-early_stopping = EarlyStopping(monitor='loss', patience=50 ,verbose=1)
+early_stopping = EarlyStopping(monitor='acc', patience=20 ,verbose=1)
 best_score = 0
 
 x_train_and_x_val = np.concatenate((x_train, x_val),axis=0)
@@ -133,12 +132,12 @@ history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
 '''
 history =sqeue.fit_generator(
     data_iter,
-    steps_per_epoch=100,
+    steps_per_epoch=500,
     validation_data=(x_val , y_val),
     # validation_steps=5,
     callbacks = [early_stopping],
     epochs =args.EPOCHS,
-    verbose=1
+    verbose=2
 )
 
 
