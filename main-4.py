@@ -25,7 +25,7 @@ from keras.layers import Conv2D, MaxPool2D, Dropout, Flatten, Dense, Activation,
 from keras.models import Sequential
 from model import Model
 from path import MODEL_PATH
-from keras.callbacks import EarlyStopping, TensorBoard,ModelCheckpoint,ReduceLROnPlateau
+from keras.callbacks import EarlyStopping, TensorBoard,ModelCheckpoint
 from keras.optimizers import SGD,adam
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
@@ -35,7 +35,7 @@ from keras.preprocessing.image import ImageDataGenerator
 '''
 parser = argparse.ArgumentParser()
 parser.add_argument("-e", "--EPOCHS", default=100, type=int, help="train epochs")
-parser.add_argument("-b", "--BATCH", default=48, type=int, help="batch size")
+parser.add_argument("-b", "--BATCH", default=32, type=int, help="batch size")
 args = parser.parse_args()
 
 '''
@@ -56,22 +56,46 @@ print('dataset.get_all_validation_data():',dataset.get_validation_length())
 实现自己的网络机构
 '''
 num_classes = 6
-sqeue =ResNet50( weights=None, input_shape=(224, 224, 3), classes= num_classes, include_top=True)
+sqeue = Sequential()
+sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same',input_shape=(224, 224, 3)))
+sqeue.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
+sqeue.add(MaxPooling2D(pool_size=(2, 2)))
+# sqeue.add(Dropout(0.25))
 
-sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+sqeue.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+sqeue.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+sqeue.add(MaxPooling2D(pool_size=(2, 2)))
+# sqeue.add(Dropout(0.25))
+
+sqeue.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
+sqeue.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
+sqeue.add(MaxPooling2D(pool_size=(2, 2)))
+# sqeue.add(Dropout(0.25))
+
+sqeue.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
+sqeue.add(MaxPooling2D(pool_size=(2, 2)))
+
+sqeue.add(Flatten())
+sqeue.add(Dense(1024, activation='relu'))
+sqeue.add(BatchNormalization())
+sqeue.add(Dropout(0.5))
+sqeue.add(Dense(1024, activation='relu'))
+sqeue.add(BatchNormalization())
+sqeue.add(Dense(num_classes, activation='softmax'))
+
+sgd = SGD(lr=0.001, decay=1e-6, momentum=0.9, nesterov=True)
 
 
 # 输出模型的整体信息
 sqeue.summary()
 
 sqeue.compile(loss='categorical_crossentropy',
-              optimizer=sgd,
+              optimizer='adam',
               metrics=['accuracy'])
 
 
-# savebestonly = ModelCheckpoint( monitor='acc', mode='auto', save_best_only=True)
+# checkpoint = ModelCheckpoint( monitor='val_acc', mode='auto', save_best_only=True)
 early_stopping = EarlyStopping(monitor='acc', patience=20 ,verbose=1)
-xuexilv = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, verbose=1, mode='auto', epsilon=0.0001, cooldown=0, min_lr=0)
 best_score = 0
 
 x_train_and_x_val = np.concatenate((x_train, x_val),axis=0)
@@ -109,9 +133,9 @@ history = sqeue.fit_generator(
     steps_per_epoch=15,
     validation_data=(x_val , y_val),
     # validation_steps=5,
-    callbacks = [early_stopping,xuexilv],
+    callbacks = [early_stopping],
     epochs =args.EPOCHS,
-    verbose=2
+    verbose=1
 )
 
 

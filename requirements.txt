@@ -2,5 +2,5 @@ flyai
 numpy
 Pillow
 keras
-tensorflow==1.13.1
+tensorflow
 tensorflow-gpu==1.13.1
