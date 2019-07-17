@@ -49,11 +49,8 @@ model = Model(dataset)
 dataset获取train & test数据的总迭代次数
 
 '''
-x_train, y_train , x_val, y_val =dataset.get_all_data()
-x_train=dataset.processor_x(x_train)
-y_train=dataset.processor_y(y_train)
-x_val=dataset.processor_x(x_val)
-y_val=dataset.processor_y(y_val)
+x_train, y_train , x_val, y_val =dataset.get_all_processor_data()
+
 print('dataset.get_train_length() :',dataset.get_train_length())
 print('dataset.get_all_validation_data():',dataset.get_validation_length())
 '''
@@ -117,7 +114,9 @@ datagen= ImageDataGenerator(
 
 )
 # datagen.fit(x_train_and_x_val)
-data_iter = datagen.flow(x_train_and_x_val, y_train_and_y_val, batch_size=args.BATCH)
+# save_to_dir：None或字符串，该参数能让你将提升后的图片保存起来，用以可视化
+data_iter = datagen.flow(x_train_and_x_val, y_train_and_y_val, batch_size=args.BATCH , save_to_dir = None)
+# 验证集可以也写成imagedatagenerator
 
 print('x_train_and_x_val.shape :', x_train_and_x_val.shape)
 '''
@@ -130,7 +129,7 @@ history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
                     epochs =args.EPOCHS,
                     verbose=2)
 '''
-history =sqeue.fit_generator(
+history = sqeue.fit_generator(
     data_iter,
     steps_per_epoch=500,
     validation_data=(x_val , y_val),
