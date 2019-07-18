@@ -12,7 +12,10 @@ earlystopping by loss ，val_loss
 **update6 2019-7-16**
 
 ImageDataGenerator
+save_to_dir：None或字符串，该参数能让你将提升后的图片保存起来，用以可视化
+验证了使用效果：设训练集是300个，batch里提取的前300个是原生图片，第2次生成的300个是原生300个的变化，第3次重新生成原生300个的变化。
 
+ReduceLROnPlateau
 实验记录
 1.  ResNet50
 relu
@@ -43,3 +46,4 @@ steps_per_epoch=60,
 删除了 rescale=1./255, 之前的归一化重复了？
 Epoch 97/100
  - 11s - loss: 0.0698 - acc: 0.9896 - val_loss: 0.0140 - val_acc: 0.9900
+
