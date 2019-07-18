@@ -12,3 +12,34 @@ earlystopping by loss ，val_loss
 **update6 2019-7-16**
 
 ImageDataGenerator
+
+实验记录
+1.  ResNet50
+relu
+args.BATCH = 32
+steps_per_epoch=15,
+Epoch 32/100
+ - 5s - loss: 6.6469 - acc: 0.5647 - val_loss: 12.5721 - val_acc: 0.2200
+
+ 
+ 2.ResNet50
+ relu
+args.BATCH = 32
+steps_per_epoch=15,
+Epoch 89/100
+ - 5s - loss: 0.2045 - acc: 0.9510 - val_loss: 13.2168 - val_acc: 0.1800
+ 
+3.ResNet50
+ relu
+args.BATCH = 16
+steps_per_epoch=60,
+Epoch 63/100
+ - 12s - loss: 0.0900 - acc: 0.9792 - val_loss: 13.2168 - val_acc: 0.1800
+ 
+ 4.ResNet50
+ relu
+args.BATCH = 16
+steps_per_epoch=60,
+删除了 rescale=1./255, 之前的归一化重复了？
+Epoch 97/100
+ - 11s - loss: 0.0698 - acc: 0.9896 - val_loss: 0.0140 - val_acc: 0.9900

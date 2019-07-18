@@ -16,6 +16,9 @@ earlystopping by loss
 update6
 ImageDataGenerator
 
+update7
+妈的！删除了 rescale=1./255, 之前的归一化重复了。
+
 """
 
 import argparse
@@ -29,13 +32,18 @@ from keras.callbacks import EarlyStopping, TensorBoard,ModelCheckpoint,ReduceLRO
 from keras.optimizers import SGD,adam
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
+import tensorflow as tf
+
+gpu_options = tf.GPUOptions(allow_growth=True)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+# sess = tf.InteractiveSession(config=tf.ConfigProto(gpu_options=gpu_options))
 
 '''
 项目的超参
 '''
 parser = argparse.ArgumentParser()
 parser.add_argument("-e", "--EPOCHS", default=100, type=int, help="train epochs")
-parser.add_argument("-b", "--BATCH", default=48, type=int, help="batch size")
+parser.add_argument("-b", "--BATCH", default=16, type=int, help="batch size")
 args = parser.parse_args()
 
 '''
@@ -65,21 +73,22 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 sqeue.summary()
 
 sqeue.compile(loss='categorical_crossentropy',
-              optimizer=sgd,
+              optimizer='rmsprop',
               metrics=['accuracy'])
 
 
 # savebestonly = ModelCheckpoint( monitor='acc', mode='auto', save_best_only=True)
-early_stopping = EarlyStopping(monitor='acc', patience=20 ,verbose=1)
-xuexilv = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, verbose=1, mode='auto', epsilon=0.0001, cooldown=0, min_lr=0)
+early_stopping = EarlyStopping(monitor='val_loss', patience=20 ,verbose=1)
+xuexilv = ReduceLROnPlateau(monitor='loss',patience=30, verbose=1)
 best_score = 0
 
 x_train_and_x_val = np.concatenate((x_train, x_val),axis=0)
 y_train_and_y_val= np.concatenate((y_train , y_val),axis=0)
+# print('x_train_and_x_val[0]', x_train_and_x_val[0])
 
 # 采用数据增强ImageDataGenerator
 datagen= ImageDataGenerator(
-    rescale=1./255,
+    # rescale=1./255,
     rotation_range=5,
     width_shift_range=0.02,
     height_shift_range=0.02,
@@ -106,12 +115,14 @@ history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
 '''
 history = sqeue.fit_generator(
     data_iter,
-    steps_per_epoch=15,
+    steps_per_epoch=60,
     validation_data=(x_val , y_val),
     # validation_steps=5,
     callbacks = [early_stopping,xuexilv],
     epochs =args.EPOCHS,
-    verbose=2
+    verbose=2,
+    workers=24
+    # use_multiprocessing=True
 )
 
 
