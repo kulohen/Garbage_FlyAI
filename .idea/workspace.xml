@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0926a165-d7d4-4ba4-ae7c-f43efceb9bff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="0926a165-d7d4-4ba4-ae7c-f43efceb9bff" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +13,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+            <state relative-caret-position="617">
+              <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
+              <folding>
+                <element signature="e#236#251#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -412,7 +411,7 @@
       <workItem from="1563378768783" duration="1255000" />
       <workItem from="1563380034215" duration="189000" />
       <workItem from="1563380233514" duration="3379000" />
-      <workItem from="1563471306498" duration="3457000" />
+      <workItem from="1563471306498" duration="3526000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1563039006977</created>
@@ -477,11 +476,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563383510355</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="妈的！删除了 rescale=1./255, 之前的归一化重复了。">
+      <created>1563474786857</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1563474786857</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64678000" />
+    <option name="totallyTimeSpent" value="64747000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,12 +502,12 @@
     <frame x="83" y="32" width="2477" height="1408" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5653207" visible="true" weight="0.31557208" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5653207" visible="true" weight="0.31557208" />
       <window_info id="Structure" order="1" sideWeight="0.43467933" side_tool="true" visible="true" weight="0.31557208" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32854864" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49814126" visible="true" weight="0.32854864" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49814126" visible="true" weight="0.32854864" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39952153" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -529,7 +535,8 @@
     <MESSAGE value="v2 ResNet50 原生 update3" />
     <MESSAGE value="update5&#10;validate merge&#10;batchnormalize&#10;earlystopping by loss" />
     <MESSAGE value="try resnet50 again" />
-    <option name="LAST_COMMIT_MESSAGE" value="try resnet50 again" />
+    <MESSAGE value="妈的！删除了 rescale=1./255, 之前的归一化重复了。" />
+    <option name="LAST_COMMIT_MESSAGE" value="妈的！删除了 rescale=1./255, 之前的归一化重复了。" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Garbage_FlyAI$main.coverage" NAME="main Coverage Results" MODIFIED="1563473540955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -671,8 +678,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        <state relative-caret-position="617">
+          <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
+          <folding>
+            <element signature="e#236#251#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
