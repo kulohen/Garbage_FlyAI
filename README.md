@@ -47,3 +47,10 @@ steps_per_epoch=60,
 Epoch 97/100
  - 11s - loss: 0.0698 - acc: 0.9896 - val_loss: 0.0140 - val_acc: 0.9900
 
+ 5.ResNet50
+ relu
+args.BATCH = 32
+steps_per_epoch=150,
+Epoch = 300
+save_best_only = True
+flyai : 86%

@@ -83,7 +83,7 @@ model.check( MODEL_PATH, overwrite=True)
 MODEL_PATH_FILE = os.path.join(sys.path[0], 'data', 'output', 'model', 'model.h5')
 savebestonly = ModelCheckpoint( filepath =MODEL_PATH_FILE, monitor='val_loss', mode='auto', save_best_only=True, verbose=1)
 early_stopping = EarlyStopping(monitor='val_loss', patience=20 ,verbose=1)
-xuexilv = ReduceLROnPlateau(monitor='loss',patience=30, verbose=1)
+xuexilv = ReduceLROnPlateau(monitor='loss',patience=20, verbose=1)
 best_score = 0
 
 x_train_and_x_val = np.concatenate((x_train, x_val),axis=0)
@@ -120,13 +120,13 @@ history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
 
 history = sqeue.fit_generator(
     data_iter,
-    steps_per_epoch=150,
+    steps_per_epoch=75,
     validation_data=(x_val , y_val),
     # validation_steps=5,
     # callbacks = [early_stopping,xuexilv],
     callbacks = [ savebestonly, xuexilv],
     epochs =args.EPOCHS,
-    verbose=1,
+    verbose=2,
     workers=24
     # use_multiprocessing=True
 )
