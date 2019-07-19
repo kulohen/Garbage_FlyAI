@@ -33,6 +33,8 @@ from keras.optimizers import SGD,adam
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 import tensorflow as tf
+import sys
+import os
 
 gpu_options = tf.GPUOptions(allow_growth=True)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
@@ -76,8 +78,10 @@ sqeue.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
               metrics=['accuracy'])
 
-
-# savebestonly = ModelCheckpoint( monitor='acc', mode='auto', save_best_only=True)
+model.check( MODEL_PATH, overwrite=True)
+# 模型保存的路径
+MODEL_PATH_FILE = os.path.join(sys.path[0], 'data', 'output', 'model', 'model.h5')
+savebestonly = ModelCheckpoint( filepath =MODEL_PATH_FILE, monitor='val_loss', mode='auto', save_best_only=True)
 early_stopping = EarlyStopping(monitor='val_loss', patience=20 ,verbose=1)
 xuexilv = ReduceLROnPlateau(monitor='loss',patience=30, verbose=1)
 best_score = 0
@@ -113,18 +117,20 @@ history = sqeue.fit(x=x_train_and_x_val, y=y_train_and_y_val,
                     epochs =args.EPOCHS,
                     verbose=2)
 '''
+
 history = sqeue.fit_generator(
     data_iter,
     steps_per_epoch=60,
     validation_data=(x_val , y_val),
     # validation_steps=5,
-    callbacks = [early_stopping,xuexilv],
+    # callbacks = [early_stopping,xuexilv],
+    callbacks = [ savebestonly, xuexilv],
     epochs =args.EPOCHS,
-    verbose=2,
+    verbose=1,
     workers=24
     # use_multiprocessing=True
 )
 
 
 #    print("dataset step : "+ str(step + 1) + "/" + str(dataset.get_step()))
-model.save_model(sqeue, MODEL_PATH, overwrite=True)
+# model.save_model(sqeue, MODEL_PATH, overwrite=True)
